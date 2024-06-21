@@ -1,0 +1,22 @@
+<div style="display: flex;">
+    <mat-form-field>
+        <mat-label>Input</mat-label>
+        <input matInput [formControl]="myForm">
+    </mat-form-field>
+    
+    <div class="example-button-row">
+        <button mat-raised-button type="submit" (click)="search()">
+            Go
+        </button>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <h1><b>{{city}}, {{country}}</b></h1>
+    <br>
+
+    <p>Temperature: {{temperature}}</p>
+    <p>Feels Like: {{feels_like}}</p>
+    <p>High: {{high}}</p>
+    <p>Low: {{low}}</p>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-weather',
@@ -11,6 +12,8 @@ export class WeatherComponent implements OnInit {
   myForm = new FormControl('');
   
   myWeather: any;
+  date: string;
+  time: string; 
 
   temperature: number = 0; 
   feels_like: number = 0; 
@@ -19,7 +22,7 @@ export class WeatherComponent implements OnInit {
   city: string = ""; 
   country: string = ""; 
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.loadWeatherData("Boston");
@@ -42,6 +45,9 @@ export class WeatherComponent implements OnInit {
         this.low = this.myWeather.main.temp_min;
         this.city = this.myWeather.name;
         this.country = this.myWeather.sys.country; 
+
+        this.date = this.datePipe.transform(new Date().toDateString()); 
+        this.time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
       },
       error: (error) => console.log(error.message),
 

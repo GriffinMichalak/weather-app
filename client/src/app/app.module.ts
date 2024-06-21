@@ -12,6 +12,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { SharedModule } from './modules/shared/shared.module';
 import { WeatherComponent } from './components/weather/weather.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { WeatherComponent } from './components/weather/weather.component';
     SharedModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

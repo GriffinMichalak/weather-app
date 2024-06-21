@@ -1,22 +1,24 @@
-<div style="display: flex;">
+<div style="display: flex; justify-content: center; align-items: center;">
     <mat-form-field>
-        <mat-label>Input</mat-label>
-        <input matInput [formControl]="myForm">
+      <mat-label>Enter City</mat-label>
+      <input matInput [formControl]="myForm">
+      <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
-    
-    <div class="example-button-row">
-        <button mat-raised-button type="submit" (click)="search()">
-            Go
-        </button>
-    </div>
-</div>
+  
+    <button mat-raised-button type="submit" (click)="search()">Go</button>
+  </div>
 
-<div style="text-align: center;">
-    <h1><b>{{city}}, {{country}}</b></h1>
-    <br>
 
-    <p>Temperature: {{temperature}}</p>
-    <p>Feels Like: {{feels_like}}</p>
-    <p>High: {{high}}</p>
-    <p>Low: {{low}}</p>
+<h1><b>{{city}}, {{country}}</b></h1>
+<h3>{{date}} at {{time}}</h3>
+<br>
+
+<p>Temperature: {{temperature}}</p>
+<p>Feels Like: {{feels_like}}</p>
+<p>High: {{high}}</p>
+<p>Low: {{low}}</p>
+
+
+<div class="weather-card">
+
 </div>

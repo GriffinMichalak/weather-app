@@ -22,32 +22,37 @@ export class WeatherComponent implements OnInit {
   city: string = ""; 
   country: string = ""; 
 
+  degrees: string = "°F";
+
   constructor(private weatherService: WeatherService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
-    this.loadWeatherData("Boston");
+    this.loadWeatherData("Boston", false);
   }
 
   search() {
     const searchCity = this.myForm.value;
-    this.loadWeatherData(searchCity); 
+    const isMetric = this.myForm.value; 
+    this.loadWeatherData(searchCity, false); 
   }
 
-  loadWeatherData(searchCity: string) {
-    this.weatherService.getWeather(searchCity).subscribe({
+  loadWeatherData(searchCity: string, isMetric: boolean) {
+    this.weatherService.getWeather(searchCity, isMetric).subscribe({
       next: (res) => {
         this.myWeather = res; 
         console.log(this.myWeather);
 
-        this.temperature = this.myWeather.main.temp; 
-        this.feels_like = this.myWeather.main.feels_like;
-        this.high = this.myWeather.main.temp_max;
-        this.low = this.myWeather.main.temp_min;
+        this.temperature = Math.round(this.myWeather.main.temp); 
+        this.feels_like = Math.round(this.myWeather.main.feels_like);
+        this.high = Math.round(this.myWeather.main.temp_max);
+        this.low = Math.round(this.myWeather.main.temp_min);
         this.city = this.myWeather.name;
         this.country = this.myWeather.sys.country; 
 
         this.date = this.datePipe.transform(new Date().toDateString()); 
         this.time = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
+
+        this.degrees = (isMetric) ? "°C" : "°F"
       },
       error: (error) => console.log(error.message),
 

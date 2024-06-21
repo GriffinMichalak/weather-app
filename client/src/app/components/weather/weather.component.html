@@ -13,12 +13,18 @@
 <h3>{{date}} at {{time}}</h3>
 <br>
 
-<p>Temperature: {{temperature}}</p>
-<p>Feels Like: {{feels_like}}</p>
-<p>High: {{high}}</p>
-<p>Low: {{low}}</p>
 
+<mat-card appearance="outlined">
+    <mat-card-content>
+        
+        <p>Temperature: {{temperature}}{{degrees}}</p>
+        <p>Feels Like: {{feels_like}}{{degrees}}</p>
+        <p>High: {{high}}{{degrees}}</p>
+        <p>Low: {{low}}{{degrees}}</p>
 
-<div class="weather-card">
+        <br>
+        <mat-slide-toggle>Metric</mat-slide-toggle>
+    </mat-card-content>
+   
 
-</div>
+</mat-card>
